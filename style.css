@@ -1,0 +1,767 @@
+/* ============================================================
+   JP SOLUÇÕES DIGITAIS
+   Ideia visual: a "tela de modelagem" de processos —
+   fundo pontilhado, formas do BPMN (círculo, tarefa, losango)
+   e o verde do evento de início como cor de ação.
+============================================================ */
+
+:root {
+    --ink: #1B2A41;        /* texto e formas */
+    --ink-soft: #4A5A72;   /* texto secundário */
+    --paper: #FBFCFD;      /* fundo */
+    --mist: #EEF2F6;       /* faixas e superfícies */
+    --line: #9AA8BA;       /* ligações do fluxograma */
+    --go: #0E9F6E;         /* início / ação */
+    --go-dark: #0B7F58;
+    --gate: #F2B035;       /* decisão */
+
+    --font-display: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+    --font-body: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+
+    --header-h: 72px;
+    --radius-task: 10px;   /* mesmo raio das tarefas do fluxograma */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+}
+
+.container {
+    width: min(1160px, 92%);
+    margin: 0 auto;
+}
+
+.narrow { max-width: 760px; }
+
+.skip-link {
+    position: absolute; left: 16px; top: -60px; z-index: 100;
+    padding: 10px 16px; background: var(--ink); color: #fff; border-radius: 6px;
+}
+.skip-link:focus { top: 12px; }
+
+:focus-visible {
+    outline: 3px solid var(--gate);
+    outline-offset: 3px;
+}
+
+
+/* ============================================================
+   CABEÇALHO
+============================================================ */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 252, 253, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--mist);
+}
+
+.header-inner {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.brand-mark { width: 38px; height: 38px; }
+.mark-start { fill: none; stroke: var(--go); stroke-width: 2.5; }
+.mark-line { stroke: var(--line); stroke-width: 2; }
+.mark-task { fill: var(--ink); }
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink-soft);
+}
+
+.main-nav a:hover { color: var(--ink); }
+
+.main-nav .nav-cta {
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+}
+
+.main-nav .nav-cta:hover { background: #24375a; color: #fff; }
+
+.menu-button {
+    display: none;
+    width: 44px; height: 44px;
+    border: 1px solid var(--mist);
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.menu-button span {
+    display: block;
+    width: 20px; height: 2px;
+    margin: 4px auto;
+    background: var(--ink);
+    transition: transform .25s, opacity .25s;
+}
+
+.menu-button[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-button[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-button[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+
+/* ============================================================
+   BOTÕES
+============================================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 24px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary { background: var(--go); color: #fff; }
+.btn-primary:hover { background: var(--go-dark); }
+
+.btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+.btn-ghost:hover { background: var(--ink); color: #fff; }
+
+.btn-full { width: 100%; }
+
+
+/* ============================================================
+   HERO — fundo pontilhado como a tela do modelador
+============================================================ */
+
+.hero {
+    padding: 72px 0 88px;
+    background-color: var(--paper);
+    background-image: radial-gradient(var(--mist) 1.4px, transparent 1.4px);
+    background-size: 22px 22px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 5.2vw, 64px);
+    font-weight: 800;
+    max-width: 14ch;
+}
+
+.hero-lead {
+    margin-top: 24px;
+    max-width: 52ch;
+    font-size: 20px;
+    color: var(--ink-soft);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.hero-note {
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--ink-soft);
+}
+
+
+/* ---------- Fluxograma do hero ---------- */
+
+.flow-card {
+    background: #fff;
+    border: 1px solid var(--mist);
+    border-radius: 18px;
+    padding: 24px 20px 16px;
+    box-shadow: 0 24px 60px -28px rgba(27, 42, 65, 0.35);
+}
+
+.flow { width: 100%; height: auto; }
+
+.edge { fill: none; stroke: var(--line); stroke-width: 2; }
+.arrow-head { fill: var(--line); }
+.edge-label { font: 600 14px var(--font-body); fill: var(--ink-soft); }
+
+.node-start { fill: #fff; stroke: var(--go); stroke-width: 2.5; }
+.node-end { fill: #fff; stroke: var(--ink); stroke-width: 5; }
+.node-task { fill: var(--mist); stroke: var(--ink); stroke-width: 1.5; }
+.node-gateway { fill: #FFF6E0; stroke: var(--gate); stroke-width: 2.5; }
+.node-timer { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
+.node-timer-inner { fill: none; stroke: var(--ink); stroke-width: 1.2; }
+.timer-hands { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; }
+
+.node-text {
+    font: 600 16px var(--font-body);
+    fill: var(--ink);
+    text-anchor: middle;
+}
+
+.node-note { font: 400 15px var(--font-body); fill: var(--ink-soft); }
+
+.token { fill: var(--go); stroke: #fff; stroke-width: 2.5; }
+
+.flow-card figcaption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+
+/* ============================================================
+   SEÇÕES
+============================================================ */
+
+.section { padding: 96px 0; }
+
+.section-title {
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 800;
+}
+
+.section-lead {
+    margin-top: 12px;
+    max-width: 60ch;
+    color: var(--ink-soft);
+}
+
+
+/* ---------- Problema ---------- */
+
+.problem {
+    background: var(--ink);
+    color: #fff;
+}
+
+.problem h2 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 700;
+}
+
+.problem p {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #C9D3E1;
+    max-width: 60ch;
+}
+
+
+/* ---------- Serviços ---------- */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-top: 48px;
+}
+
+.service-icon {
+    width: 56px; height: 56px;
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.service-icon circle { stroke: var(--go); stroke-width: 2.5; }
+
+.service h3 {
+    margin-top: 18px;
+    font-size: 24px;
+}
+
+.service p {
+    margin-top: 10px;
+    color: var(--ink-soft);
+}
+
+
+/* ---------- Como funciona: as etapas ligadas como um fluxo ---------- */
+
+.steps-section { background: var(--mist); }
+
+.steps {
+    list-style: none;
+    counter-reset: etapa;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    position: relative;
+}
+
+.steps li {
+    counter-increment: etapa;
+    position: relative;
+    padding: 24px 22px;
+    background: #fff;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-task);
+}
+
+/* seta entre as etapas, como no fluxograma */
+.steps li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -24px;
+    width: 24px;
+    height: 2px;
+    background: var(--line);
+}
+
+.steps li::before {
+    content: counter(etapa);
+    display: grid;
+    place-items: center;
+    width: 34px; height: 34px;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    border: 2.5px solid var(--go);
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--go-dark);
+}
+
+.steps h3 { font-size: 21px; }
+
+.steps p {
+    margin-top: 8px;
+    font-size: 16px;
+    color: var(--ink-soft);
+}
+
+
+/* ---------- Portfólio ---------- */
+
+.case {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 48px;
+}
+
+.case-image {
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 30px 60px -30px rgba(27, 42, 65, 0.55);
+}
+
+.case-image img { width: 100%; height: auto; }
+
+.case h3 { font-size: 28px; }
+
+.case-text p {
+    margin-top: 14px;
+    color: var(--ink-soft);
+}
+
+.case-facts {
+    list-style: none;
+    margin-top: 18px;
+}
+
+.case-facts li {
+    position: relative;
+    padding: 4px 0 4px 26px;
+    font-weight: 600;
+}
+
+.case-facts li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 12px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2.5px solid var(--go);
+}
+
+.testimonial {
+    margin-top: 22px;
+    padding-left: 18px;
+    border-left: 3px solid var(--gate);
+}
+
+.testimonial p { color: var(--ink); font-style: italic; }
+.testimonial cite { display: block; margin-top: 6px; font-style: normal; font-size: 15px; color: var(--ink-soft); }
+
+.link {
+    display: inline-block;
+    margin-top: 22px;
+    font-weight: 700;
+    color: var(--go-dark);
+    text-underline-offset: 4px;
+}
+
+.sub-title {
+    margin-top: 96px;
+    font-size: 28px;
+}
+
+.sub-lead {
+    margin-top: 8px;
+    color: var(--ink-soft);
+}
+
+.flows-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.flow-item a {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--mist);
+    border-radius: var(--radius-task);
+    background: #fff;
+}
+
+.flow-item img {
+    width: 100%;
+    aspect-ratio: 12 / 7;
+    object-fit: contain;
+}
+
+.flow-item figcaption {
+    margin-top: 12px;
+    font-size: 16px;
+    color: var(--ink-soft);
+}
+
+.flow-item strong {
+    display: block;
+    font-size: 18px;
+    color: var(--ink);
+}
+
+.demo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 64px;
+    padding: 36px 40px;
+    border: 2px dashed var(--go);
+    border-radius: 18px;
+    background: #F1FAF6;
+}
+
+.demo h3 { font-size: 26px; }
+
+.demo p {
+    margin-top: 8px;
+    max-width: 56ch;
+    color: var(--ink-soft);
+}
+
+.demo .btn { flex-shrink: 0; }
+
+
+/* ---------- Pacotes ---------- */
+
+.pricing { background: var(--mist); }
+
+.plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    align-items: stretch;
+}
+
+.plan {
+    position: relative;
+    padding: 32px 28px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1.5px solid #D6DEE8;
+}
+
+.plan-featured {
+    border: 2.5px solid var(--go);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -14px; left: 24px;
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: var(--go);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.plan h3 { font-size: 23px; }
+
+.price {
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.price span {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink-soft);
+}
+
+.plan ul {
+    list-style: none;
+    margin-top: 18px;
+    border-top: 1px solid var(--mist);
+}
+
+.plan li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--mist);
+    font-size: 16px;
+}
+
+.monthly {
+    margin-top: 32px;
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: var(--ink);
+    color: #fff;
+}
+
+.monthly h3 { font-size: 24px; }
+
+.monthly p {
+    margin-top: 8px;
+    color: #C9D3E1;
+    max-width: 70ch;
+}
+
+.monthly strong { color: #fff; }
+
+
+/* ---------- Contato ---------- */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.contact h2 { font-size: clamp(32px, 4vw, 44px); font-weight: 800; }
+
+.contact-text p {
+    margin-top: 16px;
+    color: var(--ink-soft);
+}
+
+.contact-text .about {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--mist);
+}
+
+.contact-form {
+    padding: 32px;
+    background: #fff;
+    border: 1.5px solid #D6DEE8;
+    border-radius: 18px;
+}
+
+.field { margin-bottom: 18px; }
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.field label span { font-weight: 400; color: var(--ink-soft); }
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #C5D0DD;
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-size: 17px;
+}
+
+.field textarea { resize: vertical; }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--go);
+    box-shadow: 0 0 0 3px rgba(14, 159, 110, 0.18);
+}
+
+.field input[aria-invalid="true"] { border-color: #C2410C; }
+
+.field-error {
+    display: block;
+    min-height: 1em;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #C2410C;
+}
+
+.form-status {
+    min-height: 1.4em;
+    margin-top: 12px;
+    font-size: 15px;
+    color: var(--go-dark);
+}
+
+
+/* ============================================================
+   RODAPÉ
+============================================================ */
+
+.site-footer {
+    padding: 48px 0;
+    background: var(--ink);
+    color: #C9D3E1;
+    font-size: 16px;
+}
+
+.footer-inner p + p { margin-top: 4px; }
+.site-footer strong { color: #fff; font-family: var(--font-display); font-size: 19px; }
+.site-footer a { color: #fff; }
+.copyright { margin-top: 16px !important; font-size: 14px; }
+
+
+/* ============================================================
+   RESPONSIVO
+============================================================ */
+
+@media (max-width: 980px) {
+
+    .main-nav { display: none; }
+
+    .main-nav.open {
+        display: flex;
+        position: absolute;
+        top: var(--header-h);
+        left: 0; right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 24px 4%;
+        background: var(--paper);
+        border-bottom: 1px solid var(--mist);
+    }
+
+    .menu-button { display: block; }
+
+    .hero-grid,
+    .case,
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    .hero h1 { max-width: 18ch; }
+
+    .services-grid,
+    .flows-grid,
+    .plans { grid-template-columns: 1fr; }
+
+    .services-grid { gap: 36px; }
+
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps li:nth-child(2)::after { display: none; }
+
+    .demo { flex-direction: column; align-items: flex-start; padding: 28px; }
+}
+
+@media (max-width: 600px) {
+
+    body { font-size: 17px; }
+
+    .hero { padding: 40px 0 56px; }
+    .section { padding: 64px 0; }
+
+    .brand span { font-size: 17px; }
+
+    .steps { grid-template-columns: 1fr; }
+
+    /* seta vertical entre as etapas no celular */
+    .steps li:not(:last-child)::after {
+        top: auto; bottom: -24px; right: auto; left: 38px;
+        width: 2px; height: 24px;
+    }
+
+    .steps li:nth-child(2)::after { display: block; }
+
+    .contact-form { padding: 24px 20px; }
+
+    .plan { padding: 28px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}

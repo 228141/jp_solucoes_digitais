@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JP Soluções Digitais | Processos, formulários e sites para pequenos negócios</title>
+
+    <meta
+        name="description"
+        content="Organizo o atendimento do seu negócio: fluxograma do processo, formulários digitais e site com agendamento online. Atendimento em São Paulo e online."
+    >
+
+    <!-- Compartilhamento (WhatsApp, Instagram etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JP Soluções Digitais">
+    <meta property="og:description" content="Processos organizados, formulários digitais e sites com agendamento para pequenos negócios.">
+    <meta property="og:image" content="https://jpsolucoesdigitais.com.br/img/compartilhamento.jpg">
+    <meta name="theme-color" content="#1B2A41">
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header class="site-header">
+        <div class="container header-inner">
+
+            <a href="#inicio" class="brand" aria-label="JP Soluções Digitais, início">
+                <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+                    <circle cx="8" cy="20" r="5" class="mark-start"/>
+                    <path d="M13 20h6" class="mark-line"/>
+                    <rect x="19" y="12" width="14" height="16" rx="3" class="mark-task"/>
+                    <path d="M33 20h3" class="mark-line"/>
+                </svg>
+                <span>JP Soluções Digitais</span>
+            </a>
+
+            <nav class="main-nav" id="mainNav" aria-label="Menu principal">
+                <a href="#servicos">Serviços</a>
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#pacotes">Pacotes</a>
+                <a href="#contato" class="nav-cta">Fale comigo</a>
+            </nav>
+
+            <button class="menu-button" id="menuButton" type="button"
+                    aria-label="Abrir menu" aria-controls="mainNav" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+        </div>
+    </header>
+
+
+    <main id="conteudo">
+
+        <!-- =====================================================
+             HERO — o processo desenhado é a peça principal
+        ====================================================== -->
+
+        <section class="hero" id="inicio">
+            <div class="container hero-grid">
+
+                <div class="hero-copy">
+                    <h1>Seu atendimento funcionando sozinho, do primeiro “oi” ao cliente atendido.</h1>
+
+                    <p class="hero-lead">
+                        Desenho o processo do seu negócio, monto os formulários
+                        e o site com agendamento online. Você para de anotar
+                        horário em papel e de responder a mesma pergunta o dia todo.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="https://wa.me/5511920133747?text=Ol%C3%A1%2C%20Jailton!%20Vim%20pelo%20site%20da%20JP%20Solu%C3%A7%C3%B5es%20Digitais." class="btn btn-primary" target="_blank" rel="noopener">Conversar no WhatsApp</a>
+                        <a href="#portfolio" class="btn btn-ghost">Ver trabalhos</a>
+                    </div>
+
+                    <p class="hero-note">Para clínicas, salões, barbearias, escritórios e ministérios.</p>
+                </div>
+
+
+                <figure class="flow-card" aria-labelledby="flowCaption">
+
+                    <svg class="flow" id="heroFlow" viewBox="0 0 460 510" role="img"
+                         aria-label="Fluxograma de agendamento: cliente chama no WhatsApp, escolhe serviço e horário, se o horário estiver livre recebe a confirmação automática, recebe um lembrete 24 horas antes e é atendido.">
+
+                        <defs>
+                            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path d="M0 0 L10 5 L0 10 z" class="arrow-head"/>
+                            </marker>
+                        </defs>
+
+                        <!-- ligações -->
+                        <path class="edge" d="M230 56 V84" marker-end="url(#arrow)"/>
+                        <path class="edge" d="M230 136 V154" marker-end="url(#arrow)"/>
+                        <path class="edge" d="M230 218 V234" marker-end="url(#arrow)"/>
+                        <path class="edge" d="M230 286 V318" marker-end="url(#arrow)"/>
+                        <path class="edge" d="M230 352 V374" marker-end="url(#arrow)"/>
+                        <path class="edge" d="M230 426 V458" marker-end="url(#arrow)"/>
+                        <!-- retorno "Não" -->
+                        <path class="edge" d="M198 186 H86 V111 H118" marker-end="url(#arrow)"/>
+                        <text class="edge-label" x="150" y="178">não</text>
+                        <text class="edge-label" x="240" y="230">sim</text>
+
+                        <!-- início -->
+                        <circle class="node-start" cx="230" cy="40" r="16"/>
+                        <text class="node-note" x="258" y="45">Cliente chama no WhatsApp</text>
+
+                        <!-- tarefa -->
+                        <rect class="node-task" x="120" y="86" width="220" height="50" rx="10"/>
+                        <text class="node-text" x="230" y="116">Escolhe serviço e horário</text>
+
+                        <!-- decisão -->
+                        <path class="node-gateway" d="M230 154 L262 186 L230 218 L198 186 Z"/>
+                        <text class="node-note" x="276" y="191">Horário livre?</text>
+
+                        <!-- tarefa automática -->
+                        <rect class="node-task" x="120" y="236" width="220" height="50" rx="10"/>
+                        <text class="node-text" x="230" y="266">Confirmação automática</text>
+
+                        <!-- tempo -->
+                        <circle class="node-timer" cx="230" cy="336" r="16"/>
+                        <circle class="node-timer-inner" cx="230" cy="336" r="12"/>
+                        <path class="timer-hands" d="M230 328 V336 L236 340"/>
+                        <text class="node-note" x="258" y="341">24h antes</text>
+
+                        <!-- tarefa -->
+                        <rect class="node-task" x="120" y="376" width="220" height="50" rx="10"/>
+                        <text class="node-text" x="230" y="406">Lembrete no WhatsApp</text>
+
+                        <!-- fim -->
+                        <circle class="node-end" cx="230" cy="476" r="16">
+                            <animate id="endFill" attributeName="fill" begin="token.end"
+                                     dur="0.4s" to="#0E9F6E" fill="freeze"/>
+                        </circle>
+                        <text class="node-note" x="258" y="481">Cliente atendido</text>
+
+                        <!-- o "cliente" percorrendo o processo, uma vez -->
+                        <circle class="token" r="7" cx="0" cy="0">
+                            <animateMotion id="token" dur="4.2s" begin="0.8s" fill="freeze"
+                                           path="M230 40 V476"
+                                           keyPoints="0;0.17;0.33;0.5;0.68;0.83;1"
+                                           keyTimes="0;0.16;0.36;0.52;0.68;0.84;1"
+                                           calcMode="linear"/>
+                        </circle>
+                    </svg>
+
+                    <figcaption id="flowCaption">
+                        Exemplo: o agendamento de um salão, desenhado em BPMN.
+                    </figcaption>
+                </figure>
+
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             O PROBLEMA
+        ====================================================== -->
+
+        <section class="section problem">
+            <div class="container narrow">
+                <h2>Se o seu negócio vive no WhatsApp, na planilha e no caderno, você não está sozinho.</h2>
+                <p>
+                    Horário marcado em dois lugares, cliente que esquece e não aparece,
+                    pedido que se perde no meio da conversa. Não é falta de esforço:
+                    é falta de processo. Eu organizo isso para você.
+                </p>
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             SERVIÇOS
+        ====================================================== -->
+
+        <section class="section services" id="servicos">
+            <div class="container">
+
+                <h2 class="section-title">O que eu faço</h2>
+
+                <div class="services-grid">
+
+                    <article class="service">
+                        <svg class="service-icon" viewBox="0 0 48 48" aria-hidden="true">
+                            <circle cx="8" cy="24" r="5"/>
+                            <path d="M13 24h7"/>
+                            <rect x="20" y="16" width="14" height="16" rx="3"/>
+                            <path d="M34 24h4"/>
+                            <path d="M38 24 l5 -5 l5 5 l-5 5 z" transform="translate(-5 0)"/>
+                        </svg>
+                        <h3>Mapeamento de processos</h3>
+                        <p>
+                            Converso com você, entendo como o trabalho acontece hoje
+                            e desenho o fluxograma do processo atual e do processo melhorado.
+                        </p>
+                    </article>
+
+                    <article class="service">
+                        <svg class="service-icon" viewBox="0 0 48 48" aria-hidden="true">
+                            <rect x="10" y="6" width="28" height="36" rx="4"/>
+                            <path d="M16 16h16 M16 24h16 M16 32h9"/>
+                        </svg>
+                        <h3>Formulários digitais</h3>
+                        <p>
+                            Fichas de cadastro, pedidos e solicitações que o cliente
+                            preenche pelo celular, com as respostas organizadas numa planilha.
+                        </p>
+                    </article>
+
+                    <article class="service">
+                        <svg class="service-icon" viewBox="0 0 48 48" aria-hidden="true">
+                            <rect x="6" y="9" width="36" height="30" rx="4"/>
+                            <path d="M6 17h36 M14 5v8 M34 5v8"/>
+                            <path d="M17 28l4 4 9-9"/>
+                        </svg>
+                        <h3>Site com agendamento</h3>
+                        <p>
+                            Site próprio, rápido no celular, com agendamento online
+                            e botão de WhatsApp. O cliente marca sozinho, a qualquer hora.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             COMO FUNCIONA (é uma sequência real, por isso numerada)
+        ====================================================== -->
+
+        <section class="section steps-section" id="como-funciona">
+            <div class="container">
+
+                <h2 class="section-title">Como funciona</h2>
+
+                <ol class="steps">
+                    <li>
+                        <h3>Conversa inicial</h3>
+                        <p>Uma reunião de uma hora, presencial ou por vídeo, para entender o seu dia a dia.</p>
+                    </li>
+                    <li>
+                        <h3>Desenho do processo</h3>
+                        <p>Você recebe o fluxograma de como funciona hoje e de como vai funcionar.</p>
+                    </li>
+                    <li>
+                        <h3>Implantação</h3>
+                        <p>Monto os formulários, o agendamento e o site, e testo tudo com você.</p>
+                    </li>
+                    <li>
+                        <h3>Acompanhamento</h3>
+                        <p>Nas primeiras semanas, ajusto o que for preciso até tudo rodar bem.</p>
+                    </li>
+                </ol>
+
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             PORTFÓLIO
+        ====================================================== -->
+
+        <section class="section portfolio" id="portfolio">
+            <div class="container">
+
+                <h2 class="section-title">Trabalhos</h2>
+
+                <!-- Case principal -->
+                <article class="case">
+                    <a class="case-image" href="https://bmcdigital.com.br" target="_blank" rel="noopener">
+                        <img src="img/case-bmc.webp" alt="Página inicial do site do BMC, com o brasão dourado e um guerreiro ao fundo" width="1200" height="750" loading="lazy">
+                    </a>
+                    <div class="case-text">
+                        <h3>Site do BMC — Bigorna, Martelo e Cruz</h3>
+                        <p>
+                            Site completo para um movimento de homens: identidade visual
+                            própria, conteúdo organizado a partir do manifesto, formulário
+                            que chega direto no WhatsApp, página de eventos com inscrição
+                            e domínio próprio.
+                        </p>
+                        <ul class="case-facts">
+                            <li>Design e código sob medida</li>
+                            <li>Formulário integrado ao WhatsApp</li>
+                            <li>Versão para celular</li>
+                        </ul>
+                        <!-- DEPOIMENTO: quando o líder enviar, apague os comentários em volta do bloco abaixo
+                        <blockquote class="testimonial">
+                            <p>“Escreva aqui o depoimento.”</p>
+                            <cite>Nome, função no BMC</cite>
+                        </blockquote>
+                        -->
+                        <a class="link" href="https://bmcdigital.com.br" target="_blank" rel="noopener">Visitar bmcdigital.com.br</a>
+                    </div>
+                </article>
+
+
+                <!-- Fluxogramas -->
+                <h3 class="sub-title">Processos desenhados</h3>
+                <p class="sub-lead">Modelos em BPMN, o padrão usado por empresas para documentar processos.</p>
+
+                <div class="flows-grid">
+
+                    <figure class="flow-item">
+                        <a href="img/fluxo-agendamento.png" target="_blank" rel="noopener">
+                            <img src="img/fluxo-agendamento.png" alt="Fluxograma do agendamento online para serviços" loading="lazy">
+                        </a>
+                        <figcaption>
+                            <strong>Agendamento online</strong>
+                            Para clínicas, salões e barbearias: o cliente escolhe serviço e horário e recebe lembrete.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="flow-item">
+                        <a href="img/fluxo-contabilidade.png" target="_blank" rel="noopener">
+                            <img src="img/fluxo-contabilidade.png" alt="Fluxograma da coleta mensal de documentos de um escritório de contabilidade" loading="lazy">
+                        </a>
+                        <figcaption>
+                            <strong>Coleta de documentos</strong>
+                            Para escritórios de contabilidade: lembrete mensal, conferência e cobrança de pendências.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="flow-item">
+                        <a href="img/fluxo-reembolso.png" target="_blank" rel="noopener">
+                            <img src="img/fluxo-reembolso.png" alt="Fluxograma de solicitação e aprovação de reembolso de despesas" loading="lazy">
+                        </a>
+                        <figcaption>
+                            <strong>Reembolso de despesas</strong>
+                            Para empresas com equipe: solicitação, aprovação do gestor e pagamento.
+                        </figcaption>
+                    </figure>
+
+                </div>
+
+
+                <!-- Demonstração do agendamento -->
+                <div class="demo">
+                    <div>
+                        <h3>Teste o agendamento você mesmo</h3>
+                        <p>
+                            Uma página de agendamento de demonstração, do jeito que o seu
+                            cliente veria. Escolha um horário e veja a confirmação chegar.
+                        </p>
+                    </div>
+                    <!-- DEMO: troque o "#" pelo link da página de agendamento do Google Agenda -->
+                    <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Abrir demonstração</a>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             PACOTES
+        ====================================================== -->
+
+        <section class="section pricing" id="pacotes">
+            <div class="container">
+
+                <h2 class="section-title">Pacotes</h2>
+                <p class="section-lead">Preço fechado, combinado antes de começar. O valor final depende do tamanho do projeto.</p>
+
+                <div class="plans">
+
+                    <article class="plan">
+                        <h3>Processo organizado</h3>
+                        <p class="price"><span>a partir de</span> R$ 1.500</p>
+                        <ul>
+                            <li>Reunião de diagnóstico</li>
+                            <li>Fluxograma atual e melhorado</li>
+                            <li>Formulários digitais</li>
+                            <li>Guia de como funciona</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan">
+                        <h3>Site essencial</h3>
+                        <p class="price"><span>a partir de</span> R$ 1.500</p>
+                        <ul>
+                            <li>Site de uma página</li>
+                            <li>Formulário que chega no WhatsApp</li>
+                            <li>Botão de WhatsApp e redes sociais</li>
+                            <li>Publicação com domínio próprio</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan plan-featured">
+                        <p class="plan-badge">Mais completo</p>
+                        <h3>Site com agendamento</h3>
+                        <p class="price"><span>a partir de</span> R$ 3.000</p>
+                        <ul>
+                            <li>Tudo do Site essencial</li>
+                            <li>Agendamento online com lembrete</li>
+                            <li>Fluxograma do seu atendimento</li>
+                            <li>Treinamento para a sua equipe</li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <div class="monthly">
+                    <h3>Plano mensal</h3>
+                    <p>
+                        Hospedagem, domínio e pequenas alterações, como trocar fotos,
+                        horários e eventos, por <strong>R$ 150 por mês</strong>.
+                        Você não precisa se preocupar com a parte técnica.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTATO
+        ====================================================== -->
+
+        <section class="section contact" id="contato">
+            <div class="container contact-grid">
+
+                <div class="contact-text">
+                    <h2>Vamos conversar sobre o seu negócio</h2>
+                    <p>
+                        Conte rapidamente o que você precisa. A mensagem abre pronta
+                        no WhatsApp e eu respondo no mesmo dia.
+                    </p>
+                    <p class="about">
+                        Sou o Jailton Pereira. Trabalho com mapeamento de processos,
+                        fluxogramas e formulários, e agora levo essa experiência
+                        para pequenos negócios.
+                    </p>
+                </div>
+
+                <form class="contact-form" id="contactForm" novalidate>
+
+                    <div class="field">
+                        <label for="nome">Seu nome</label>
+                        <input id="nome" name="nome" type="text" autocomplete="name" required>
+                        <small class="field-error" id="nome-erro"></small>
+                    </div>
+
+                    <div class="field">
+                        <label for="negocio">Tipo de negócio</label>
+                        <select id="negocio" name="negocio">
+                            <option>Clínica ou consultório</option>
+                            <option>Salão ou barbearia</option>
+                            <option>Escritório ou contabilidade</option>
+                            <option>Igreja ou ministério</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="interesse">O que você precisa</label>
+                        <select id="interesse" name="interesse">
+                            <option>Organizar um processo</option>
+                            <option>Formulários digitais</option>
+                            <option>Site</option>
+                            <option>Site com agendamento</option>
+                            <option>Ainda não sei</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="mensagem">Conte um pouco <span>(opcional)</span></label>
+                        <textarea id="mensagem" name="mensagem" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">Enviar pelo WhatsApp</button>
+
+                    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p><strong>JP Soluções Digitais</strong></p>
+            <p>Processos, formulários e sites para pequenos negócios.</p>
+            <p><a href="https://wa.me/5511920133747" target="_blank" rel="noopener">WhatsApp (11) 9 2013-3747</a></p>
+            <p class="copyright">© <span id="ano">2026</span> JP Soluções Digitais</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
